@@ -88,3 +88,4 @@ end
 
 -- MoveTyrone will be called over and over again
 Runtime:addEventListener("enterFrame", MoveTyrone)
+
