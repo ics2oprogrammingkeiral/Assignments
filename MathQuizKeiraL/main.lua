@@ -281,6 +281,7 @@ numberOfCorrect:setTextColor(1, 0.8, 0.6)
 correctAnswers = display.newText( "Correct Answers!",
  display.contentWidth/2, display.contentHeight/1.25, nil, 50)
 correctAnswers:setTextColor(1, 0.8, 0.6)
+
 -- displays a question and sets the colour
 questionObject = display.newText( "", display.contentWidth/4,
  display.contentHeight/2, nil, 40 )
