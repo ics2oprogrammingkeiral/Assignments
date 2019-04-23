@@ -1,6 +1,5 @@
 -- Title: MathQuiz
 -- Name: Keira Lawson
-
 -- Course: ICS2O/3C
 -- This program allows you to play a fun math quiz
 -- with random operators, lives, and timers.
@@ -321,3 +320,4 @@ numericField:addEventListener( "userInput", NumericFieldListener )
 AskQuestion()
 -- call the function to run the timer
 StartTimer()
+
