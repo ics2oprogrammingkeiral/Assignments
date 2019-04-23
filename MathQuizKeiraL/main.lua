@@ -1,6 +1,5 @@
 -- Title: MathQuiz
 -- Name: Keira Lawson
-<<<<<<< HEAD
 -- Course: ICS2O/3C
 -- This program allows you to play a fun math quiz
 -- with random operators, lives, and timers.
@@ -322,9 +321,3 @@ AskQuestion()
 -- call the function to run the timer
 StartTimer()
 
-
-
-=======
--- Course: ICS2O
--- This program
->>>>>>> 0dc62ce3fede552ff82b0572ad5829680715a990
