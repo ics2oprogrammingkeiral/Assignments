@@ -117,6 +117,7 @@ end
 
      -- when the sound finishes playing fade out to main menu
      if (plate.y >= display.contentHeight/2) then
+     	-- do the transition
      	Transition( )
      end
 
