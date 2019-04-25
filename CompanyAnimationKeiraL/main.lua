@@ -16,11 +16,17 @@ display.setDefault("background", 1, 1, 1)
 scrollSpeed = 10
 
 ---------------------------------------------------------------
+-- SOUNDS -- 
+---------------------------------------------------------------
+local crashSound = audio.loadSound("Sounds/crash.mp3")
+local crashSoundsChannel
+
+---------------------------------------------------------------
 -- OBJECTS -- 
 ---------------------------------------------------------------
 -- create the plate
 	
-local plate = display.newImageRect("Images/plate.png", 600, 400)
+local plate = display.newImageRect("Images/plate.png", 600, 450)
 	plate.x = display.contentWidth/2
 	plate.y = display.contentHeight/-2
 
@@ -46,25 +52,74 @@ local spoon = display.newImageRect("Images/spoon.png", 150, 450)
 local function MovePlate( event )
 	-- add the scroll speed to the y-value
 	plate.y = plate.y + scrollSpeed
+
+	-- make the plate stop after it reaches half
+	if (plate.y >= display.contentHeight/2) then
+		-- stop moving lamp
+		Runtime:removeEventListener("enterFrame", MovePlate)
+		-- play crash sound
+		crashSoundsChannel = audio.play(crashSound )
+	end
 end
 
 -- move the slime to the starting poisition
 local function MoveSlime( event )
 	-- add the scroll speed to the y-value
 	slime.y = slime.y + scrollSpeed
+		-- make the plate stop after it reaches half
+	if (slime.y >= display.contentHeight/1.5) then
+		-- stop moving lamp
+		Runtime:removeEventListener("enterFrame", MoveSlime)
+	end
 end
 
 -- move the fork to the starting poisition
 local function MoveFork( event )
 	-- add the scroll speed to the y-value
 	fork.y = fork.y + scrollSpeed
+		-- make the plate stop after it reaches half
+	if (fork.y >= display.contentHeight/2) then
+		-- stop moving lamp
+		Runtime:removeEventListener("enterFrame", MoveFork)
+		-- play crash sound
+		crashSoundsChannel = audio.play(crashSound )
+	end
 end
 
 -- move the spoon to the starting poisition
 local function MoveSpoon( event )
 	-- add the scroll speed to the y-value
 	spoon.y = spoon.y + scrollSpeed
+		-- make the plate stop after it reaches half
+	if (spoon.y >= display.contentHeight/2) then
+		-- stop moving lamp
+		Runtime:removeEventListener("enterFrame", MoveSpoon)
+		-- play crash sound
+		crashSoundsChannel = audio.play(crashSound )
+	end
 end
+
+
+    if ( phase == "will" ) then
+       
+        -- Pre-Setting Transition Options
+        local transitionOptions = (
+            {
+                effect = "fade",
+                time = 1000
+            })
+
+        -- Creating Transition function
+        function Transition( )
+            composer.gotoScene( "main_menu", transitionOptions )
+        end
+     end 
+
+     -- when the sound finishes playing fade out to main menu
+     if (plate.y >= display.contentHeight/2) then
+     	Transition( )
+     end
+
 
 ---------------------------------------------------------------
 -- EVENT LISTENERS -- 
