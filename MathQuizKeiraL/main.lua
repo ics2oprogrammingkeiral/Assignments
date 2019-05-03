@@ -104,6 +104,7 @@ local function AskQuestion()
 	-- generate 2 random numbers
 	randomNumber1 = math.random(1,8)
 	randomNumber2 = math.random(1,8)
+	randomOperator = 5
 
 	-- if the random operator is 1, then do addition
 	if (randomOperator == 1) then
