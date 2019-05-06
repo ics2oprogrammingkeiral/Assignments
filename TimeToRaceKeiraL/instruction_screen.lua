@@ -1,9 +1,9 @@
 -----------------------------------------------------------------------------------------
 --
--- credits_screen.lua
+-- instruction_screen.lua
 -- Created by: Keira L
 -- Date: May 5, 2019
--- Description: This is the credits page, displaying a back button to 
+-- Description: This is the instructionx page, displaying a back button to 
 -- the main menu.
 -----------------------------------------------------------------------------------------
 
@@ -18,16 +18,15 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "credits_screen"
+sceneName = "instruction_screen"
 
 -- Creating Scene Object
-scene = composer.newScene( sceneName )
+scene = composer.newScene( sceneName ) 
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
-local bkg_image
-local backButton
+
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -52,20 +51,8 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
     -- BACKGROUND AND DISPLAY OBJECTS
     -----------------------------------------------------------------------------------------
-
-    -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImageRect("Images/CreditsScreen.png", display.contentWidth,
-     display.contentHeight)
-    bkg_image.x = display.contentCenterX
-    bkg_image.y = display.contentCenterY
-    bkg_image.width = display.contentWidth
-    bkg_image.height = display.contentHeight
-
-    -- Associating display objects with this scene 
-    sceneGroup:insert( bkg_image )
-
-    -- Send the background image to the back layer so all other objects can be on top
-    bkg_image:toBack()
+    --set the background colour
+    display.setDefault("background", 0, 0, 0)
 
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
@@ -75,8 +62,8 @@ function scene:create( event )
     backButton = widget.newButton( 
     {
         -- Setting Position
-        x = display.contentWidth*7.25/8,
-        y = display.contentHeight*13.5/16,
+        x = display.contentWidth*3.5/8,
+        y = display.contentHeight*15/16,
 
         -- Setting Dimensions
         -- width = 1000,

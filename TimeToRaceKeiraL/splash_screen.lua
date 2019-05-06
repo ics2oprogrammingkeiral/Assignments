@@ -1,10 +1,10 @@
 -----------------------------------------------------------------------------------------
 --
 -- splash_screen.lua
--- Created by: Your Name
--- Date: Month Day, Year
+-- Created by: Keira L
+-- Date: May 5, 2019
 -- Description: This is the splash screen of the game. It displays the 
--- company logo that...
+-- company logo that I photoshopped
 -----------------------------------------------------------------------------------------
 
 -- Use Composer Library

@@ -1,9 +1,10 @@
 -----------------------------------------------------------------------------------------
 --
 -- main_menu.lua
--- Created by: Your Name
--- Date: Month Day, Year
--- Description: This is the main menu, displaying the credits, instructions & play buttons.
+-- Created by: Keira L
+-- Date: May 5, 2019
+-- Description: This is the main menu, displaying the credits, instructions 
+-- & play buttons.
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
@@ -38,7 +39,6 @@ local creditsButton
 local instructionsButton
 local creditsRock
 local instructionsRock
-local playRock
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES
@@ -52,7 +52,17 @@ local playRock
 -- Creating Transition Function to Credits Page
 local function CreditsTransition( )       
     composer.gotoScene( "credits_screen", {effect = "zoomOutInFadeRotate", time = 500})
-end 
+end
+
+-- Creating Transition Function to Instructions Page
+local function InstructionsTransition( )       
+    composer.gotoScene( "instruction_screen", {effect = "zoomOutInFadeRotate", time = 500})
+end  
+
+-- Creating Transition Function to Play Page
+local function LevelSelectTransition( )       
+    composer.gotoScene( "levelSelect_screen", {effect = "zoomOutInFadeRotate", time = 500})
+end  
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -88,8 +98,8 @@ function scene:create( event )
     creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1.25/8,
-            y = display.contentHeight*7/8,
+            x = display.contentWidth*1/8,
+            y = display.contentHeight*7.25/8,
 
             -- Insert the images here
             defaultFile = "Images/CreditsButtonUnpressed.png",
@@ -100,22 +110,53 @@ function scene:create( event )
         } ) 
 
         -- scale down the size
-        creditsButton:scale(0.6, 0.6)
+        creditsButton:scale(0.55, 0.55)
 
     -----------------------------------------------------------------------------------------
-    -- create the rock that goes behind the credits button
-    creditsRock = display.newImage("Images/MainMenu_Rock.png")
+   
+    -- Creating instructions Button
+    instructionsButton = widget.newButton( 
+        {
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth*1/8,
+            y = display.contentHeight*6/8,
 
-    creditsRock.x = display.contentWidth*1.25/8
-    creditsRock.y = display.contentHeight*7/8
-    creditsRock.width = display.contentWidth
-    creditsRock.height = display.contentHeight
+            -- Insert the images here
+            defaultFile = "Images/InstructionsButtonUnpressed.png",
+            overFile = "Images/InstructionsButtonPressed.png",
 
+            -- When the button is released, call the Credits transition function
+            onRelease = InstructionsTransition
+        } ) 
+
+        -- scale down the size
+        instructionsButton:scale(0.55, 0.55)
+
+    -----------------------------------------------------------------------------------------   
+
+    -- Creating Play Button
+    playButton = widget.newButton( 
+        {   
+            -- Set its position on the screen relative to the screen size
+            x = display.contentWidth*1/8,
+            y = display.contentHeight*4.75/8,
+
+            -- Insert the images here
+            defaultFile = "Images/PlayButtonUnpressed.png",
+            overFile = "Images/PlayButtonPressed.png",
+
+            -- When the button is released, call the Level1 screen transition function
+            onRelease = LevelSelectTransition          
+        } )
+
+        -- scale down the size
+        playButton:scale(0.55, 0.55)
 
     -----------------------------------------------------------------------------------------
     -- Associating button widgets with this scene
     sceneGroup:insert( creditsButton )
-    sceneGroup:insert( creditsRock )
+    sceneGroup:insert( instructionsButton )
+    sceneGroup:insert( playButton )
 
 
 end -- function scene:create( event )   
