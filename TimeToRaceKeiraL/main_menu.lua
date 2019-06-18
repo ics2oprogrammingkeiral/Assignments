@@ -39,6 +39,14 @@ local creditsButton
 local instructionsButton
 local creditsRock
 local instructionsRock
+local cloud
+local sunray1
+local sunray2
+local sunray3
+local sunray4
+
+local SPEED = -2
+local SPEED2 = 2
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES
@@ -64,6 +72,67 @@ local function LevelSelectTransition( )
     composer.gotoScene( "levelSelect_screen", {effect = "zoomOutInFadeRotate", time = 500})
 end  
 
+-- this fuction makes the cloud move into frame
+local function MoveCloud()
+    -- add the scroll speed
+    cloud.x = cloud.x + SPEED2
+    if (cloud.x >= display.contentWidth/4.5) then
+        -- stop moving cloud
+        Runtime:removeEventListener("enterFrame", MoveCloud)
+    end
+end
+
+
+-- this fuction makes the button move into frame
+local function MovePlay()
+    -- add the scroll speed
+    playButton.x = playButton.x + SPEED2
+    if (playButton.x >= display.contentWidth*1/8) then
+        -- stop moving the button
+        Runtime:removeEventListener("enterFrame", MovePlay)
+    end
+end
+
+-- this fuction makes the button move into frame
+local function MoveIns()
+    -- add the scroll speed
+    instructionsButton.x = instructionsButton.x + SPEED2
+    if (instructionsButton.x >= display.contentWidth*1/8) then
+        -- stop moving the button
+        Runtime:removeEventListener("enterFrame", MoveIns)
+    end
+end
+
+
+-- this fuction makes the button move into frame
+local function MoveCred()
+    -- add the scroll speed
+    creditsButton.x = creditsButton.x + SPEED2
+    if (creditsButton.x >= display.contentWidth*1/8) then
+        -- stop moving cloud
+        Runtime:removeEventListener("enterFrame", MoveCred)
+    end
+end
+
+
+-- this fuction makes the button move into frame
+local function MoveSunray1()
+    -- add the scroll speed
+    sunray1.y = sunray1.y + SPEED2
+    if (sunray1.y >= display.contentHeight/7.4) then
+        -- move the sunray back to it's starting poisition
+        sunray1.y = sunray1.y + SPEED
+    end
+end
+
+
+Runtime:addEventListener("enterFrame", MoveCloud)
+Runtime:addEventListener("enterFrame", MovePlay)
+Runtime:addEventListener("enterFrame", MoveIns)
+Runtime:addEventListener("enterFrame", MoveCred)
+Runtime:addEventListener("enterFrame", MoveSunray1)
+
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -85,10 +154,6 @@ function scene:create( event )
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
 
-
-    -- Associating display objects with this scene 
-    sceneGroup:insert( bkg_image )
-
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
 
@@ -98,7 +163,7 @@ function scene:create( event )
     creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1/8,
+            x = 0,
             y = display.contentHeight*7.25/8,
 
             -- Insert the images here
@@ -118,7 +183,7 @@ function scene:create( event )
     instructionsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1/8,
+            x = 0,
             y = display.contentHeight*6/8,
 
             -- Insert the images here
@@ -138,7 +203,7 @@ function scene:create( event )
     playButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth*1/8,
+            x = 0,
             y = display.contentHeight*4.75/8,
 
             -- Insert the images here
@@ -152,12 +217,48 @@ function scene:create( event )
         -- scale down the size
         playButton:scale(0.55, 0.55)
 
+-----------------------------------------------------------------------------------------
+    cloud = display.newImage("Images/cloud.png")
+    cloud.x = 0
+    cloud.y = 100
+
+    cloud:scale(0.15, 0.15)
+
+    sunray1 = display.newImage("Images/sunray1.png")
+    sunray1.x = 1000
+    sunray1.y = 160
+
+
+    sunray2 = display.newImage("Images/sunray1.png")
+    sunray2.x = 920
+    sunray2.y = 135
+
+    sunray2.rotation = 45
+
+
+    sunray3 = display.newImage("Images/sunray1.png")
+    sunray3.x = 880
+    sunray3.y = 80
+
+    sunray3.rotation = 60
+
+
+    sunray4 = display.newImage("Images/sunray1.png")
+    sunray4.x = 875
+    sunray4.y = 20
+
+    sunray4.rotation = 90
     -----------------------------------------------------------------------------------------
     -- Associating button widgets with this scene
+    sceneGroup:insert( bkg_image )
     sceneGroup:insert( creditsButton )
     sceneGroup:insert( instructionsButton )
     sceneGroup:insert( playButton )
-
+    sceneGroup:insert( cloud )
+    sceneGroup:insert( sunray1 )
+    sceneGroup:insert( sunray2 )
+    sceneGroup:insert( sunray3 )
+    sceneGroup:insert( sunray4 )
 
 end -- function scene:create( event )   
 
